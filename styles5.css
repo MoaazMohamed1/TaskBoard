@@ -1,0 +1,362 @@
+/* وضعية ليلي */
+body {
+    font-family: "Rubik", sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    direction: rtl;
+    text-align: right;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #1e1e1e;
+    border-radius: 15px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffab00;
+    padding-bottom: 10px;
+}
+
+h1 {
+    font-size: 26px;
+    color: #ffab00;
+}
+
+#addTaskBtn {
+    font-family: "Rubik", sans-serif;
+    background-color: #ffab00;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#addTaskBtn:hover {
+    background-color: #e68900;
+    transform: scale(1.05);
+}
+
+#taskList, #completedTaskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#taskList li, #completedTaskList li {
+    background-color: #2c2c2c;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#taskList li:hover, #completedTaskList li:hover {
+    transform: scale(1.02);
+    background-color: #3c3c3c;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.5s;
+}
+
+.modal-content {
+    background-color: #2c2c2c;
+    margin: 15% auto;
+    padding: 25px;
+    border: none;
+    border-radius: 15px;
+    width: 70%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s;
+}
+
+.close, .close-details {
+    color: #ffab00;
+    float: left;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus, .close-details:hover, .close-details:focus {
+    color: #e68900;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    color: #e0e0e0;
+}
+
+input, select, textarea, button {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #ffab00;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e68900;
+}
+
+.add {
+    font-family: "Rubik", sans-serif;
+    padding: 14px 25px;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add:hover {
+    background-color: #e68900;
+    transform: scale(1.05);
+}
+
+#taskList li.high {
+    border-left: 6px solid #d32f2f;
+}
+
+#taskList li.medium {
+    border-left: 6px solid #ff5722;
+}
+
+#taskList li.low {
+    border-left: 6px solid #4caf50;
+}
+
+#taskList li input[type="checkbox"] {
+    margin-right: 12px;
+}
+
+#completedTaskList li {
+    text-decoration: line-through;
+}
+
+#daysNav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#daysNav .day {
+    background-color: #ffab00;
+    color: #ffffff;
+    padding: 7px 12px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#daysNav .day:hover {
+    background-color: #e68900;
+    transform: scale(1.05);
+}
+
+#daysNav .selected {
+    background-color: #e64a19;
+}
+
+.days-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 12px;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.day {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ffab00;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-right: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.day:hover {
+    background-color: #e68900;
+    transform: scale(1.05);
+}
+
+.day.selected {
+    background-color: #ff5722;
+}
+
+.day.current-day {
+    background-color: #ffc107;
+    font-weight: bold;
+}
+
+#statsContainer {
+  width: 85%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #1e1e1e;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 20px auto;
+}
+
+#statsContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+#statsContainer h2 {
+  margin-bottom: 15px;
+  font-size: 26px;
+  color: #e0e0e0;
+  font-weight: 500;
+  border-bottom: 3px solid #ffab00;
+  padding-bottom: 10px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: #2c2c2c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.stat-item:hover {
+  background: #3c3c3c;
+  transform: scale(1.02);
+}
+
+.stat-item i {
+  font-size: 24px;
+  margin-right: 12px;
+  color: #ffab00;
+}
+
+.stat-item p {
+  margin: 0;
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+.stat-item span {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#totalTasks {
+  border-left: 6px solid #4caf50;
+}
+
+#completedTasks {
+  border-left: 6px solid #0288d1;
+}
+
+#incompleteTasks {
+  border-left: 6px solid #d32f2f;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  #statsContainer {
+    padding: 15px;
+  }
+
+  #statsContainer h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .stat-item {
+    padding: 10px;
+  }
+
+  .stat-item i {
+    font-size: 22px;
+  }
+
+  .stat-item p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  #statsContainer {
+    padding: 10px;
+  }
+
+  #statsContainer h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .stat-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .stat-item i {
+    font-size: 18px;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .stat-item p {
+    font-size: 12px;
+  }
+}

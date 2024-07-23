@@ -1,0 +1,370 @@
+body {
+    font-family: "Rubik", sans-serif;
+    background-color: #e0f7fa;
+    direction: rtl;
+    text-align: right;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #00acc1;
+    padding-bottom: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #00acc1;
+}
+
+#addTaskBtn {
+    font-family: "Rubik", sans-serif;
+    background-color: #00acc1;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#addTaskBtn:hover {
+    background-color: #0097a7;
+    transform: scale(1.05);
+}
+
+#taskList, #completedTaskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#taskList li, #completedTaskList li {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#taskList li:hover, #completedTaskList li:hover {
+    transform: scale(1.02);
+    background-color: #f0f0f0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    width: 75%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-100px); }
+    to { transform: translateY(0); }
+}
+
+.close, .close-details {
+    color: #0097a7;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus, .close-details:hover, .close-details:focus {
+    color: #00796b;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, select, textarea, button {
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #b0bec5;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #00acc1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0097a7;
+}
+
+.add {
+    font-family: "Rubik", sans-serif;
+    padding: 12px 20px;
+    font-size: 14px;
+    margin-top: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add:hover {
+    background-color: #0097a7;
+    transform: scale(1.05);
+}
+
+#taskList li.high {
+    border-left: 5px solid #d32f2f;
+}
+
+#taskList li.medium {
+    border-left: 5px solid #f57c00;
+}
+
+#taskList li.low {
+    border-left: 5px solid #388e3c;
+}
+
+#taskList li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#completedTaskList li {
+    text-decoration: line-through;
+}
+
+/* Days navigation styles */
+#daysNav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#daysNav .day {
+    background-color: #00acc1;
+    color: #ffffff;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#daysNav .day:hover {
+    background-color: #0097a7;
+    transform: scale(1.05);
+}
+
+#daysNav .selected {
+    background-color: #00796b;
+}
+
+
+.days-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    background-color: #e0f7fa;
+    border: 1px solid #b0bec5;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.day {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00acc1;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.day:hover {
+    background-color: #0097a7;
+    transform: scale(1.05);
+}
+
+.day.selected {
+    background-color: #ff5722;
+}
+
+.day.current-day {
+    background-color: #ffb300;
+    font-weight: bold;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+#statsContainer {
+  width: 85%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 20px auto;
+}
+
+#statsContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+#statsContainer h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #333;
+  font-weight: 500;
+  border-bottom: 3px solid #00796b;
+  padding-bottom: 10px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f1f8e9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.stat-item:hover {
+  background: #dcedc8;
+  transform: scale(1.02);
+}
+
+.stat-item i {
+  font-size: 22px;
+  margin-right: 10px;
+  color: #00796b;
+}
+
+.stat-item p {
+  margin: 0;
+  font-size: 16px;
+  color: #424242;
+}
+
+.stat-item span {
+  font-weight: bold;
+  color: #212121;
+}
+
+#totalTasks {
+  border-left: 5px solid #43a047;
+}
+
+#completedTasks {
+  border-left: 5px solid #0288d1;
+}
+
+#incompleteTasks {
+  border-left: 5px solid #d32f2f;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  #statsContainer {
+    padding: 15px;
+  }
+
+  #statsContainer h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .stat-item {
+    padding: 8px;
+  }
+
+  .stat-item i {
+    font-size: 20px;
+  }
+
+  .stat-item p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  #statsContainer {
+    padding: 10px;
+  }
+
+  #statsContainer h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .stat-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .stat-item i {
+    font-size: 18px;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .stat-item p {
+    font-size: 12px;
+  }
+}

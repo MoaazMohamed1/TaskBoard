@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قائمة المهام</title>
+  <link id="themeStylesheet" rel="stylesheet" href="styles.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="daysContainer" class="days-container"></div>
+  <div id="tasksContainer" class="tasks-container"></div>
+
+  <div class="container">
+    <header>
+      <h1 class="st"> قائمة المهام <span>🎯</span></h1>
+      <button id="addTaskBtn"><i class="fas fa-plus"></i> إضافة مهمة</button>
+    </header>
+    <nav id="daysNav"></nav>
+    <main>
+      <ul id="taskList"></ul>
+      <h2>المهام المكتملة</h2>
+      <ul id="completedTaskList"></ul>
+    </main>
+  </div>
+
+  <div id="taskModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2><i class="fas fa-plus-circle"></i> إضافة مهمة جديدة</h2>
+      <form id="taskForm">
+        <div class="form-group">
+          <label for="taskName">اسم المهمة</label>
+          <input type="text" id="taskName" name="taskName" required>
+        </div>
+        <div class="form-group">
+          <label for="taskDescription">وصف المهمة</label>
+          <textarea id="taskDescription" name="taskDescription"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="taskPriority">أولوية المهمة</label>
+          <select id="taskPriority" name="taskPriority">
+            <option value="high">عالية</option>
+            <option value="medium">متوسطة</option>
+            <option value="low">منخفضة</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="taskReminder">تذكير المهمة</label>
+          <input type="datetime-local" id="taskReminder" name="taskReminder">
+        </div>
+        <button type="submit" class="add">حفظ المهمة</button>
+      </form>
+    </div>
+  </div>
+  
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-details">&times;</span>
+      <h2><i class="fas fa-info-circle"></i> تفاصيل المهمة</h2>
+      <div id="taskDetails"></div>
+      <button id="editTaskBtn"><i class="fas fa-edit"></i></button>
+      <button id="deleteTaskBtn"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+  
+  <div id="popupMenu" class="popup-menu">
+    <button id="popupToggle" class="popup-toggle">
+        <i class="fas fa-cog"></i>
+    </button>
+    <div class="popup-content">
+        <label for="themeSelectPopup">اختر قالب التصميم:</label>
+        <select id="themeSelectPopup">
+            <option value="styles.css">التصميم الأصلي</option>
+            <option value="styles1.css">قالب 1</option>
+            <option value="styles2.css">قالب 2</option>
+            <option value="styles3.css">قالب 3</option>
+            <option value="styles4.css">قالب 4</option>
+            <option value="styles5.css">الوضع المظلم</option>
+        </select>
+        <button id="showStatsBtn" class="showStatsBtn">عرض الإحصائيات</button>
+    </div>
+  </div>
+
+  <div id="statsContainer" class="stats-container" style="display: none;">
+    <h3>الإحصائيات</h3>
+    <p id="totalTasks">إجمالي المهام: 0</p>
+    <p id="completedTasks">المهام المكتملة: 0</p>
+    <p id="incompleteTasks">المهام غير المكتملة: 0</p>
+  </div>
+
+  <audio id="checkboxSound" src="Complete.mp3"></audio>
+  <script src="scripts.js"></script>
+</body>
+</html>
